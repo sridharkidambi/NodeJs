@@ -72,7 +72,7 @@ let getGrades=(schoolId)=>{
 
 let  getstudentsandtheiraverage=(id)=>{
     let user;
-getUser(101).then((resp)=>{
+getUser(id).then((resp)=>{
         user=resp;
     return getGrades(resp.schoolId);
 }
@@ -80,10 +80,31 @@ getUser(101).then((resp)=>{
 ).then((res)=>{
     let average=0;
     average=res.map((item)=> item.marks).reduce((a,b)=>{return a+b;}) /res.length;
-    console.log(average);
+    console.log(`The final average is: `+average);
 })
-.catch();
+.catch((err)=>{
+    console.log(err);
+});
 
 }
 
-getstudentsandtheiraverage(101);
+// getstudentsandtheiraverage(101);
+// using aysnc and await
+
+let ayncwayofcallig = async (id) => {
+
+    let user =await getUser(id);
+    let grades= await getGrades(user.schoolId);
+    // console.log(user);
+    // console.log(grades);
+
+    let average=0;
+    average=grades.map((item)=> item.marks).reduce((a,b)=>{return a+b;}) /grades.length;
+    return `The final average is: `+average;
+}
+console.log('aysnc await way------');
+ayncwayofcallig(101).then((res)=>{
+    console.log( res);
+}).catch((err)=>{
+    console.log(err);
+});
