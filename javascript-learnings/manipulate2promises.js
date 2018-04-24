@@ -103,7 +103,7 @@ let ayncwayofcallig = async (id) => {
     return `The final average is: `+average;
 }
 console.log('aysnc await way------');
-ayncwayofcallig(101).then((res)=>{
+ayncwayofcallig(111).then((res)=>{
     console.log( res);
 }).catch((err)=>{
     console.log(err);
